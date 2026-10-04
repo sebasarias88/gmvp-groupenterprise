@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { officeMeeting } from "@/assets/images";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { site } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
@@ -25,7 +26,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero image={officeMeeting}
         label="Contacto"
         lines={["Comencemos a", { text: "invertir.", className: "italic text-gold" }]}
         intro="Gracias por visitarnos. Envíanos tu mensaje y un asesor te orientará hacia la inversión más acorde para ti."

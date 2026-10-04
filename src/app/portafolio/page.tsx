@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { skylineBw } from "@/assets/images";
 import { CompanyCards } from "@/components/sections/CompanyCards";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionLabel } from "@/components/sections/SectionLabel";
@@ -16,7 +17,7 @@ const sectors = ["Sector financiero", "Construcción", "Inmobiliario", "Madera",
 export default function PortfolioPage() {
   return (
     <>
-      <PageHero
+      <PageHero image={skylineBw}
         label="Portafolio de compañías"
         lines={["Inversiones", { text: "en movimiento.", className: "italic text-gold" }]}
         intro="Gestionamos activamente un portafolio de compañías en Colombia. Cada una opera con autonomía y se fortalece con las sinergias del grupo."

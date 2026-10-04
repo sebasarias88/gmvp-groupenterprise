@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { boardroom, officeMeeting } from "@/assets/images";
+import { ParallaxImage } from "@/components/core/ParallaxImage";
 import { about } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionLabel } from "@/components/sections/SectionLabel";
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
 export default function GroupPage() {
   return (
     <>
-      <PageHero label="Quiénes somos" lines={["Una matriz", { text: "que crea valor.", className: "italic text-gold" }]} intro={about.history} />
+      <PageHero image={boardroom} label="Quiénes somos" lines={["Una matriz", { text: "que crea valor.", className: "italic text-gold" }]} intro={about.history} />
 
       <section className="mx-auto max-w-[1400px] px-6 pb-28 md:px-10 md:pb-40">
         <RevealGroup className="grid gap-6 md:grid-cols-2">
@@ -30,6 +32,15 @@ export default function GroupPage() {
             </RevealItem>
           ))}
         </RevealGroup>
+      </section>
+
+      <section className="mx-auto max-w-[1400px] px-6 pb-28 md:px-10 md:pb-40">
+        <ParallaxImage src={officeMeeting} alt="Equipo de GMVP en sala de reuniones" className="frame-corners h-[60svh] min-h-[420px] rounded-[32px]" imageClassName="img-grade">
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-onyx/90 via-transparent to-transparent" />
+          <p className="absolute bottom-8 left-8 right-8 max-w-2xl font-serif text-3xl leading-tight text-champagne md:bottom-12 md:left-12 md:text-5xl">
+            Un portafolio dinámico, administrado con <em className="text-gold">gobierno corporativo.</em>
+          </p>
+        </ParallaxImage>
       </section>
 
       <section className="border-y border-line bg-coal py-28 md:py-40">

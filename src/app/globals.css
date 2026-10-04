@@ -152,3 +152,36 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 999px;
   background: var(--accent);
 }
+
+/* ---------- v2 utilities ---------- */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 22s linear infinite; transform-origin: 50% 50%; }
+
+/* Warm, low-key grading so stock photos sit inside the black & gold palette */
+.img-grade { filter: grayscale(0.35) contrast(1.05) brightness(0.72) sepia(0.18); }
+.img-grade-hover { transition: filter 0.9s var(--ease-expo), transform 1.2s var(--ease-expo); }
+.group:hover .img-grade-hover { filter: grayscale(0) contrast(1.05) brightness(0.85) sepia(0.05); }
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-champagne) 45%, transparent);
+}
+.text-outline-gold {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-gold);
+}
+
+/* Thin gold frame corners */
+.frame-corners { position: relative; }
+.frame-corners::before,
+.frame-corners::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: var(--color-gold);
+  pointer-events: none;
+  z-index: 5;
+}
+.frame-corners::before { top: 14px; left: 14px; border-top: 1px solid; border-left: 1px solid; }
+.frame-corners::after { bottom: 14px; right: 14px; border-bottom: 1px solid; border-right: 1px solid; }
