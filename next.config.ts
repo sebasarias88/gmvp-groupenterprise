@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    // AVIF first (≈30-50% smaller than WebP), WebP as fallback.
+    formats: ["image/avif", "image/webp"],
+    qualities: [60, 75],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
+  },
+  experimental: {
+    optimizePackageImports: ["lucide-react", "motion", "gsap"],
+  },
   // Keep old WordPress URLs working (SEO + shared links).
   async redirects() {
     return [

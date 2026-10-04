@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { officeMeeting } from "@/assets/images";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { site } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
@@ -25,7 +26,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero
+      <PageHero image={officeMeeting}
         label="Contacto"
         lines={["Comencemos a", { text: "invertir.", className: "italic text-gold" }]}
         intro="Gracias por visitarnos. Envíanos tu mensaje y un asesor te orientará hacia la inversión más acorde para ti."
@@ -45,7 +46,7 @@ export default function ContactPage() {
                 </span>
                 <span>
                   <span className="block font-mono text-xs uppercase tracking-[0.2em] text-stone">{label}</span>
-                  <span className="mt-2 block break-words font-semibold text-champagne">{value}</span>
+                  <span className="mt-2 block break-all font-semibold text-champagne">{value}</span>
                 </span>
               </a>
             </RevealItem>

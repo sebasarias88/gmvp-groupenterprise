@@ -152,3 +152,99 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 999px;
   background: var(--accent);
 }
+
+/* ---------- v2 utilities ---------- */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 22s linear infinite; transform-origin: 50% 50%; }
+
+/* Warm, low-key grading so stock photos sit inside the black & gold palette */
+.img-grade { filter: grayscale(0.35) contrast(1.05) brightness(0.72) sepia(0.18); }
+.img-grade-hover { transition: filter 0.9s var(--ease-expo), transform 1.2s var(--ease-expo); }
+.group:hover .img-grade-hover { filter: grayscale(0) contrast(1.05) brightness(0.85) sepia(0.05); }
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-champagne) 45%, transparent);
+}
+.text-outline-gold {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-gold);
+}
+
+/* Thin gold frame corners */
+.frame-corners { position: relative; }
+.frame-corners::before,
+.frame-corners::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: var(--color-gold);
+  pointer-events: none;
+  z-index: 5;
+}
+.frame-corners::before { top: 14px; left: 14px; border-top: 1px solid; border-left: 1px solid; }
+.frame-corners::after { bottom: 14px; right: 14px; border-bottom: 1px solid; border-right: 1px solid; }
+
+/* ---------- Performance & mobile ---------- */
+/* Touch devices use native scrolling (Lenis is disabled there). */
+@media (pointer: coarse) {
+  html { scroll-behavior: smooth; }
+  /* The animated grain layer costs a lot of GPU time on phones. */
+  .grain::after { display: none; }
+}
+/* Skip rendering work for long off-screen sections until they get close. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+
+/* CSS-only hero word reveal (starts on first paint; no JS needed) */
+.split-word {
+  transform: translateY(115%) rotate(4deg);
+  opacity: 0;
+}
+html[data-intro="done"] .split-word {
+  animation: split-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 55ms + var(--d, 0ms));
+}
+@keyframes split-in {
+  to { transform: none; opacity: 1; }
+}
+/* CSS-only entrance for hero copy and buttons */
+/* Transform-only on purpose: text stays visible (opacity 1) from the very first
+   paint, so it counts for LCP immediately; the page curtain covers the slide. */
+.intro-fade {
+  transform: translateY(18px);
+}
+html[data-intro="done"] .intro-fade {
+  animation: intro-fade 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes intro-fade {
+  to { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .split-word, .intro-fade { transform: none; opacity: 1; animation: none !important; }
+}
+
+/* Page transition (template.tsx) */
+.page-curtain {
+  transform-origin: top;
+  animation: curtain-up 0.7s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+@keyframes curtain-up {
+  from { transform: scaleY(1); }
+  to { transform: scaleY(0); visibility: hidden; }
+}
+.page-enter {
+  animation: page-enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+@keyframes page-enter {
+  from { transform: translateY(24px); }
+  to { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-curtain { display: none; }
+  .page-enter { animation: none; }
+}
+
+/* Grid children may shrink below their content width (prevents horizontal overflow on phones). */
+.grid > * { min-width: 0; }

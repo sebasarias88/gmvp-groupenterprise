@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { chartsTablet } from "@/assets/images";
 import { investor, faqs } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionLabel } from "@/components/sections/SectionLabel";
@@ -24,7 +25,7 @@ export default function InvestPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <PageHero
+      <PageHero image={chartsTablet}
         label="Invertir"
         lines={["Sé dueño de", { text: "tu futuro.", className: "italic text-gold" }]}
         intro={investor.profile}

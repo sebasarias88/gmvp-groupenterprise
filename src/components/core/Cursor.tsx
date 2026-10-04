@@ -21,13 +21,23 @@ export function Cursor() {
   useEffect(() => {
     if (!enabled) return;
     document.documentElement.classList.add("has-cursor");
+    const last: { hover: boolean; label: string | null } = { hover: false, label: null };
 
     const move = (e: PointerEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
       const target = (e.target as HTMLElement).closest<HTMLElement>("a, button, [data-cursor], input, textarea, select, label");
-      setHover(!!target);
-      setLabel(target?.dataset.cursor ?? null);
+      // Only re-render when the hovered state actually changes.
+      const nextHover = !!target;
+      const nextLabel = target?.dataset.cursor ?? null;
+      if (nextHover !== last.hover) {
+        last.hover = nextHover;
+        setHover(nextHover);
+      }
+      if (nextLabel !== last.label) {
+        last.label = nextLabel;
+        setLabel(nextLabel);
+      }
     };
     window.addEventListener("pointermove", move);
     return () => {

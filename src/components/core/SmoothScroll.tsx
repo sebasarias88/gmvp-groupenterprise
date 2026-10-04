@@ -17,7 +17,9 @@ declare global {
 export function SmoothScroll() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    // Touch devices keep native scrolling: smoother, cheaper and better for battery.
+    if (reduce || touch) return;
 
     const lenis = new Lenis({
       duration: 1.15,
