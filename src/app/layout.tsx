@@ -66,9 +66,15 @@ const jsonLd = {
   subOrganization: [{ "@type": "Organization", name: "GMVP Credifinanzas S.A.S.", url: "https://gmvpcredifinanzas.com" }],
 };
 
+const introScript = `(function(){try{var d=document.documentElement;var m=function(q){return window.matchMedia(q).matches};if(m("(max-width: 767px)")||m("(prefers-reduced-motion: reduce)")||sessionStorage.getItem("gmvp-intro")==="1"){d.dataset.intro="done"}}catch(e){document.documentElement.dataset.intro="done"}})();`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es-CO">
+    <html lang="es-CO" suppressHydrationWarning>
+      <head>
+        {/* Decides before first paint whether the intro plays, so hero text can animate with CSS alone. */}
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
+      </head>
       <body className="grain min-h-screen">
         <a
           href="#main"

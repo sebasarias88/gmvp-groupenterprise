@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { MarketTicker } from "./MarketTicker";
@@ -50,7 +50,7 @@ export function Hero() {
           transition={{ duration: 2.6, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-[-4%]"
         >
-          <Image src={towers} alt="" fill priority placeholder="blur" sizes="100vw" className="img-grade object-cover object-[50%_35%]" />
+          <Image src={towers} alt="" fill preload placeholder="blur" sizes="100vw" className="img-grade object-cover object-[50%_35%]" />
         </motion.div>
       </motion.div>
       <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_75%_30%,rgba(212,175,55,0.22),transparent_55%)] mix-blend-overlay" />
@@ -76,19 +76,14 @@ export function Hero() {
       <motion.div style={{ y: textY, opacity: fade }} className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-end px-6 pb-14 pt-36 md:px-10 md:pb-16">
         <div className="mb-10 flex items-center justify-between gap-6">
           <motion.p
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: ready ? 1 : 0, x: ready ? 0 : -16 }}
-            transition={{ duration: 1 }}
-            className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.32em] text-gold md:text-xs"
+            className="intro-fade flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.32em] text-gold md:text-xs"
           >
             <span className="h-px w-10 bg-gold" aria-hidden />
             {hero.eyebrow}
           </motion.p>
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: ready ? 1 : 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="hidden font-mono text-[11px] uppercase tracking-[0.32em] text-stone md:block"
+            style={{ "--d": "300ms" } as CSSProperties}
+            className="intro-fade hidden font-mono text-[11px] uppercase tracking-[0.32em] text-stone md:block"
           >
             {site.address.city} · {site.address.region} · CO
           </motion.p>
@@ -118,10 +113,8 @@ export function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : 24 }}
-          transition={{ duration: 1.1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10 grid gap-8 border-t border-white/10 pt-8 md:grid-cols-[1.2fr_1fr] md:items-end"
+          style={{ "--d": "500ms" } as CSSProperties}
+          className="intro-fade mt-10 grid gap-8 border-t border-white/10 pt-8 md:grid-cols-[1.2fr_1fr] md:items-end"
         >
           <p className="max-w-xl text-base leading-relaxed text-sand md:text-lg">{hero.intro}</p>
           <div className="flex flex-wrap items-center gap-3 md:justify-end">

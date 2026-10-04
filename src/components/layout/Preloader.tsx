@@ -15,7 +15,9 @@ export function Preloader() {
       seen = sessionStorage.getItem("gmvp-intro") === "1";
       sessionStorage.setItem("gmvp-intro", "1");
     } catch {}
-    if (seen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Phones skip the intro entirely so content (LCP) paints immediately.
+    const small = window.matchMedia("(max-width: 767px)").matches;
+    if (seen || small || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       const skip = requestAnimationFrame(() => {
         setVisible(false);
         markIntroDone();
@@ -25,7 +27,7 @@ export function Preloader() {
 
     window.__lenis?.stop();
     const start = performance.now();
-    const duration = 1800;
+    const duration = 1100;
     let raf = 0;
     const tick = (t: number) => {
       const p = Math.min(1, (t - start) / duration);
@@ -35,7 +37,7 @@ export function Preloader() {
         setVisible(false);
         window.__lenis?.start();
         markIntroDone();
-      }, 350);
+      }, 200);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
@@ -48,7 +50,7 @@ export function Preloader() {
           key="preloader"
           exit={{ y: "-100%" }}
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[200] flex flex-col justify-between bg-onyx p-6 md:p-10"
+          className="fixed inset-0 z-[200] flex flex-col justify-between bg-onyx p-6 max-md:hidden md:p-10"
           aria-hidden
         >
           <div className="flex justify-between font-mono text-xs uppercase tracking-[0.3em] text-stone">

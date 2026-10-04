@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import { useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { SplitHeading } from "@/components/core/SplitHeading";
 
@@ -28,7 +28,7 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
           className="absolute inset-y-0 right-0 w-full lg:w-[52%]"
         >
           <motion.div style={{ y: imgY }} className="absolute inset-[-10%_0]">
-            <Image src={image} alt="" fill priority placeholder="blur" sizes="(min-width:1024px) 52vw, 100vw" className="img-grade object-cover" />
+            <Image src={image} alt="" fill preload placeholder="blur" sizes="(min-width:1024px) 52vw, 100vw" className="img-grade object-cover" />
           </motion.div>
           <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-onyx via-onyx/70 to-onyx/10 lg:via-onyx/40" />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-onyx to-transparent" />
@@ -37,11 +37,7 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
       {!image && <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_0%,rgba(212,175,55,0.12),transparent_50%)]" />}
 
       <motion.div style={{ y, opacity }} className="relative mx-auto max-w-[1400px] px-6 md:px-10">
-        <motion.p
-          initial={{ opacity: 0, x: -12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.3em] text-gold"
+        <motion.p className="intro-fade mb-8 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.3em] text-gold" style={{ "--d": "0ms" } as CSSProperties}
         >
           <span className="h-px w-10 bg-gold" aria-hidden />
           {label}
@@ -53,11 +49,7 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
           className="max-w-5xl font-serif text-[14vw] leading-[0.9] text-champagne md:text-[8.5vw] xl:text-[7.5rem]"
         />
         {intro && (
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 1 }}
-            className="mt-10 max-w-xl text-lg leading-relaxed text-sand md:text-xl"
+          <motion.p className="intro-fade mt-10 max-w-xl text-lg leading-relaxed text-sand md:text-xl" style={{ "--d": "600ms" } as CSSProperties}
           >
             {intro}
           </motion.p>

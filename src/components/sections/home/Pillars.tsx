@@ -1,68 +1,96 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { pillars } from "@/content/site";
-import { boardroom, chartsTablet, handshakeContract, handshakeDark, skylineBw } from "@/assets/images";
+import { boardroom, chartsTablet, handshakeContract, handshakeDark } from "@/assets/images";
+import { ParallaxImage } from "@/components/core/ParallaxImage";
 import { SectionLabel } from "../SectionLabel";
 import { cn } from "@/lib/cn";
 
-type Token = { text: string } | { img: StaticImageData; alt: string };
+type Segment = { text: string; em?: boolean };
 
-const manifesto: Token[] = [
-  { text: "Estamos aquí" },
-  { img: boardroom, alt: "Reunión de junta directiva" },
-  { text: "para hacer realidad sus sueños y enseñarle a" },
-  { img: chartsTablet, alt: "Análisis financiero en tableta" },
-  { text: "invertir en su futuro. Cada persona llega hasta donde su mente se lo permite:" },
-  { img: handshakeContract, alt: "Acuerdo de inversión" },
-  { text: "ese es el motor de las grandes empresas." },
+const manifesto: Segment[] = [
+  { text: "Estamos aquí para hacer realidad" },
+  { text: "sus sueños", em: true },
+  { text: "y enseñarle a" },
+  { text: "invertir en su futuro.", em: true },
+  { text: "Cada persona llega hasta donde su mente se lo permite: ese es el motor de las" },
+  { text: "grandes empresas.", em: true },
 ];
 
-/** Big editorial manifesto whose words light up with scroll, with inline photo "pills". */
+const facts = [
+  { value: "2012", label: "Nace el grupo" },
+  { value: "3", label: "Compañías en portafolio" },
+  { value: "10–100", label: "Acciones por inversionista" },
+];
+
+/**
+ * Editorial manifesto: a framed photo on the left (sticky on desktop) and the
+ * statement on the right, whose words light up with scroll; key phrases in gold.
+ */
 function Manifesto() {
-  const ref = useRef<HTMLParagraphElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
       gsap.fromTo(
         "[data-w]",
-        { opacity: 0.14 },
-        { opacity: 1, stagger: 0.08, ease: "none", scrollTrigger: { trigger: ref.current, start: "top 78%", end: "bottom 50%", scrub: true } },
+        { opacity: 0.16 },
+        { opacity: 1, stagger: 0.08, ease: "none", scrollTrigger: { trigger: "[data-statement]", start: "top 80%", end: "bottom 55%", scrub: true } },
       );
-      gsap.utils.toArray<HTMLElement>("[data-pill]").forEach((pill) => {
-        gsap.fromTo(
-          pill,
-          { width: 0, opacity: 0 },
-          { width: "var(--pill-w)", opacity: 1, ease: "power3.out", scrollTrigger: { trigger: pill, start: "top 85%", end: "top 55%", scrub: true } },
-        );
-      });
     },
     { scope: ref },
   );
 
   return (
-    <p ref={ref} className="font-serif text-[2.6rem] leading-[1.08] text-champagne md:text-6xl lg:text-[5.2rem]">
-      {manifesto.map((t, i) =>
-        "text" in t ? (
-          t.text.split(" ").map((w, j) => (
-            <span key={`${i}-${j}`} data-w className="opacity-15">
-              {w}{" "}
-            </span>
-          ))
-        ) : (
-          <span
-            key={i}
-            data-pill
-            className="relative mx-1 inline-block h-[0.82em] overflow-hidden rounded-full align-[-0.08em] [--pill-w:1.9em] md:[--pill-w:2.2em]"
-            style={{ width: 0 }}
-          >
-            <Image src={t.img} alt={t.alt} fill sizes="200px" className="object-cover" />
-          </span>
-        ),
-      )}
-    </p>
+    <div ref={ref} className="grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
+      <div className="lg:sticky lg:top-28 lg:self-start">
+        <ParallaxImage
+          src={handshakeContract}
+          alt="Acuerdo de inversión entre socios"
+          className="frame-corners aspect-[4/3] rounded-[28px] lg:aspect-[4/5]"
+          imageClassName="img-grade"
+          sizes="(min-width:1024px) 40vw, 100vw"
+        >
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-onyx/90 via-onyx/10 to-transparent" />
+          <div className="absolute inset-x-6 bottom-6 flex items-end justify-between gap-4 md:inset-x-8 md:bottom-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-gold">GMVP Group · desde 2012</p>
+            <span className="font-serif text-5xl leading-none text-champagne/30">“</span>
+          </div>
+        </ParallaxImage>
+      </div>
+
+      <div className="flex flex-col justify-center">
+        <SectionLabel>Quiénes somos</SectionLabel>
+        <p data-statement className="font-serif text-[2.1rem] leading-[1.15] text-champagne sm:text-5xl lg:text-[3.6rem] lg:leading-[1.08]">
+          {manifesto.map((seg, i) =>
+            seg.text.split(" ").map((w, j) => (
+              <span key={`${i}-${j}`} data-w className={cn("opacity-15", seg.em && "italic text-gold")}>
+                {w}{" "}
+              </span>
+            )),
+          )}
+        </p>
+
+        <div className="mt-12 flex items-center gap-4">
+          <span className="h-px w-12 bg-gold" aria-hidden />
+          <p className="text-sm text-sand">
+            <span className="font-semibold text-champagne">GMVP Group Enterprise</span> · Fondo de inversión de capital privado
+          </p>
+        </div>
+
+        <dl className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line bg-line">
+          {facts.map((f) => (
+            <div key={f.label} className="flex flex-col-reverse bg-onyx p-4 md:p-6">
+              <dt className="mt-1 text-[11px] leading-snug text-stone md:text-xs">{f.label}</dt>
+              <dd className="font-serif text-3xl text-gold md:text-4xl">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
   );
 }
 
@@ -110,12 +138,8 @@ function PillarPanels() {
 export function Pillars() {
   return (
     <section id="manifiesto" className="relative mx-auto max-w-[1400px] scroll-mt-24 px-6 py-28 md:px-10 md:py-40">
-      <SectionLabel>Quiénes somos</SectionLabel>
       <Manifesto />
       <PillarPanels />
-      <div aria-hidden className="pointer-events-none absolute -right-40 top-40 hidden h-[520px] w-[380px] opacity-[0.07] xl:block">
-        <Image src={skylineBw} alt="" fill sizes="380px" className="object-cover" />
-      </div>
     </section>
   );
 }

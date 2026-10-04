@@ -46,7 +46,7 @@ export default function ContactPage() {
                 </span>
                 <span>
                   <span className="block font-mono text-xs uppercase tracking-[0.2em] text-stone">{label}</span>
-                  <span className="mt-2 block break-words font-semibold text-champagne">{value}</span>
+                  <span className="mt-2 block break-all font-semibold text-champagne">{value}</span>
                 </span>
               </a>
             </RevealItem>

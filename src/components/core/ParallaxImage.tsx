@@ -53,7 +53,7 @@ export function ParallaxImage({
           alt={alt}
           fill
           sizes={sizes}
-          priority={priority}
+          preload={priority}
           placeholder="blur"
           className={cn("object-cover", imageClassName)}
         />
