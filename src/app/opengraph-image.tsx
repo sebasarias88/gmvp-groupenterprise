@@ -25,7 +25,7 @@ export default function OpengraphImage() {
           <span>Sueña. Crea. Avanza.</span>
           <span style={{ color: "#d4af37", fontStyle: "italic" }}>Es posible.</span>
         </div>
-        <div style={{ display: "flex", fontSize: 26, color: "#b9b09c" }}>Fondo de inversión de capital privado · Armenia, Quindío</div>
+        <div style={{ display: "flex", fontSize: 26, color: "#b9b09c" }}>Fondo de inversión de capital privado · Bogotá</div>
       </div>
     ),
     size,
