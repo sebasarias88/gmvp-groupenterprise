@@ -70,6 +70,7 @@ export function Footer() {
               <p>{site.address.city}, {site.address.country}</p>
               <a href={site.phoneHref} className="block hover:text-gold">{site.phone}</a>
               <a href={`mailto:${site.emails.management}`} className="block break-all hover:text-gold">{site.emails.management}</a>
+              <a href={`mailto:${site.emails.info}`} className="block break-all hover:text-gold">{site.emails.info}</a>
             </address>
           </div>
         </div>

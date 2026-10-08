@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
       { source: "/preguntas-frecuentes", destination: "/invertir#preguntas", permanent: true },
       { source: "/contactenos", destination: "/contacto", permanent: true },
       { source: "/slogan", destination: "/", permanent: true },
+      { source: "/que-buscamos", destination: "/invertir", permanent: true },
+      { source: "/politica-privacidad", destination: "/privacidad", permanent: true },
+      { source: "/politica-de-cookies", destination: "/privacidad", permanent: true },
+      { source: "/inicio_prueba", destination: "/", permanent: true },
+      { source: "/mantenimiento", destination: "/", permanent: true },
     ];
   },
   async headers() {

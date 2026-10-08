@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 // NOTE: base text aligned with Ley 1581 de 2012; have it reviewed by the client's legal team.
 export default function PrivacyPage() {
   return (
-    <article className="mx-auto max-w-3xl px-6 pb-28 pt-40 text-sand md:pt-52">
+    <article className="break-words mx-auto max-w-3xl px-6 pb-28 pt-40 text-sand md:pt-52">
       <p className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-gold">Legal</p>
       <h1 className="font-serif text-5xl leading-none text-champagne md:text-7xl">Política de tratamiento de datos personales</h1>
       <div className="mt-12 space-y-8 leading-relaxed [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-champagne">

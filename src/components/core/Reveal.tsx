@@ -3,6 +3,12 @@
 import { motion, type HTMLMotionProps } from "motion/react";
 import type { ReactNode } from "react";
 
+/**
+ * Not exactly 0: browsers skip fully transparent elements when measuring LCP, so
+ * content revealed above the fold would count as "late". 1% is invisible to the eye.
+ */
+const HIDDEN_OPACITY = 0.01;
+
 type RevealProps = HTMLMotionProps<"div"> & {
   children: ReactNode;
   delay?: number;
@@ -14,7 +20,7 @@ type RevealProps = HTMLMotionProps<"div"> & {
 export function Reveal({ children, delay = 0, y = 40, once = true, ...rest }: RevealProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={{ opacity: HIDDEN_OPACITY, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, margin: "0px 0px -10% 0px" }}
       transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
@@ -53,7 +59,7 @@ export function RevealItem({ children, className }: { children: ReactNode; class
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 32 },
+        hidden: { opacity: HIDDEN_OPACITY, y: 32 },
         show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
       }}
     >

@@ -26,7 +26,8 @@ function CardTag({ href, className, children }: { href?: string; className: stri
 export default function ContactPage() {
   const cards = [
     { icon: Phone, label: "Llámanos", value: site.phone, href: site.phoneHref },
-    { icon: Mail, label: "Escríbenos", value: site.emails.management, href: `mailto:${site.emails.management}` },
+    { icon: Mail, label: "Gerencia", value: site.emails.management, href: `mailto:${site.emails.management}` },
+    { icon: Mail, label: "Información", value: site.emails.info, href: `mailto:${site.emails.info}` },
     { icon: MapPin, label: "Ubicación", value: `${site.address.city}, ${site.address.country}`, href: undefined },
   ];
 
@@ -39,7 +40,7 @@ export default function ContactPage() {
       />
 
       <section className="mx-auto max-w-[1400px] px-6 pb-20 md:px-10">
-        <RevealGroup className="grid gap-4 md:grid-cols-3">
+        <RevealGroup className="grid gap-4 sm:grid-cols-2">
           {cards.map(({ icon: Icon, label, value, href }) => (
             <RevealItem key={label}>
               <CardTag
@@ -51,7 +52,7 @@ export default function ContactPage() {
                 </span>
                 <span>
                   <span className="block font-mono text-xs uppercase tracking-[0.2em] text-stone">{label}</span>
-                  <span className="mt-2 block break-all font-semibold text-champagne">{value}</span>
+                  <span className="mt-2 block break-all text-sm font-semibold text-champagne sm:text-base">{value}</span>
                 </span>
               </CardTag>
             </RevealItem>
