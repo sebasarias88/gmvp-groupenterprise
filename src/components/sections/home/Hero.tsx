@@ -85,7 +85,7 @@ export function Hero() {
             style={{ "--d": "300ms" } as CSSProperties}
             className="intro-fade hidden font-mono text-[11px] uppercase tracking-[0.32em] text-stone md:block"
           >
-            {site.address.city} · {site.address.region} · CO
+            {site.address.city} · CO
           </motion.p>
         </div>
 

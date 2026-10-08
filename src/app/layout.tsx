@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "invertir en Colombia",
     "acciones",
     "dividendos",
-    "Armenia Quindío",
+    "Bogotá",
     "GMVP",
   ],
   openGraph: {
@@ -57,9 +57,7 @@ const jsonLd = {
   telephone: site.phone,
   address: {
     "@type": "PostalAddress",
-    streetAddress: site.address.street,
     addressLocality: site.address.city,
-    addressRegion: site.address.region,
     addressCountry: "CO",
   },
   founder: { "@type": "Person", name: "Gerberth Martín Vega Prada" },

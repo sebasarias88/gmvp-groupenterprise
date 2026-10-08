@@ -55,7 +55,7 @@ export function Preloader() {
         >
           <div className="flex justify-between font-mono text-xs uppercase tracking-[0.3em] text-stone">
             <span>GMVP Group Enterprise</span>
-            <span>Armenia · Colombia</span>
+            <span>Bogotá · Colombia</span>
           </div>
           <div className="space-y-6">
             <p className="font-serif text-5xl text-champagne md:text-8xl">

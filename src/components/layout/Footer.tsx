@@ -36,8 +36,7 @@ export function Footer() {
 
         <div className="mt-20 grid gap-12 border-t border-line pt-12 md:grid-cols-4">
           <div className="space-y-4">
-            <Logo className="text-champagne" />
-            <p className="max-w-xs text-sm leading-relaxed text-sand">{site.slogan}</p>
+            <Logo variant="full" />
           </div>
           <div>
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-stone">Navegación</p>
@@ -66,9 +65,9 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-stone">Oficina</p>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-stone">Contacto</p>
             <address className="space-y-2 text-sm not-italic text-sand">
-              <p>{site.address.street}<br />{site.address.city}, {site.address.region}</p>
+              <p>{site.address.city}, {site.address.country}</p>
               <a href={site.phoneHref} className="block hover:text-gold">{site.phone}</a>
               <a href={`mailto:${site.emails.management}`} className="block break-all hover:text-gold">{site.emails.management}</a>
             </address>

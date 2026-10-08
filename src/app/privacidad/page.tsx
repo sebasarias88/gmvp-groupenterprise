@@ -16,7 +16,7 @@ export default function PrivacyPage() {
         <section>
           <h2>Responsable</h2>
           <p>
-            {site.legalName}, con domicilio en {site.address.street}, {site.address.city}, {site.address.region}. Correo: {site.emails.management}. Teléfono: {site.phone}.
+            {site.legalName}, con domicilio en {site.address.city}, {site.address.country}. Correo: {site.emails.management}. Teléfono: {site.phone}.
           </p>
         </section>
         <section>

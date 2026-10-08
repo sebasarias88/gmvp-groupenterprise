@@ -10,7 +10,7 @@ export const site = {
   url: "https://gmvpgroupenterprise.com",
   slogan: "Sueña, crea, avanza: es posible.",
   description:
-    "Fondo de inversión de capital privado con sede en Armenia, Quindío. Creamos valor sostenible con gobierno corporativo, modelos de negocio probados y asociaciones de largo plazo donde todos ganan.",
+    "Fondo de inversión de capital privado con sede en Bogotá. Creamos valor sostenible con gobierno corporativo, modelos de negocio probados y asociaciones de largo plazo donde todos ganan.",
   phone: "+57 313 694 0102",
   phoneHref: "tel:+573136940102",
   whatsapp: "573136940102",
@@ -18,13 +18,7 @@ export const site = {
     management: "gerencia@gmvpgroupenterprise.com",
     info: "info@gmvpgroupenterprise.com",
   },
-  address: {
-    street: "Calle 13 #13-61, oficina 304",
-    city: "Armenia",
-    region: "Quindío",
-    country: "Colombia",
-    mapsQuery: "Calle 13 13-61 Armenia Quindío Colombia",
-  },
+  address: { city: "Bogotá", country: "Colombia" },
   nav: [
     { href: "/grupo", label: "El Grupo" },
     { href: "/portafolio", label: "Portafolio" },
