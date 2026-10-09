@@ -33,7 +33,7 @@ export default function FounderPage() {
             </Reveal>
             <ParallaxImage src={teamTable} alt="Equipo de asesores en reunión" className="frame-corners mt-12 aspect-[16/10] rounded-[28px]" sizes="(min-width:1024px) 45vw, 100vw" imageClassName="img-grade" />
           </div>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} className="lg:sticky lg:top-32 lg:self-start">
             <SectionLabel>Equipo</SectionLabel>
             <p className="text-xl leading-relaxed text-sand">{founder.team}</p>
             <ul className="mt-10 grid gap-3 sm:grid-cols-3">

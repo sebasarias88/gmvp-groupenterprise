@@ -138,6 +138,7 @@ function PillarPanels() {
 export function Pillars() {
   return (
     <section id="manifiesto" className="relative mx-auto max-w-[1400px] scroll-mt-24 px-6 py-28 md:px-10 md:py-40">
+      <h2 className="sr-only">Quiénes somos</h2>
       <Manifesto />
       <PillarPanels />
     </section>

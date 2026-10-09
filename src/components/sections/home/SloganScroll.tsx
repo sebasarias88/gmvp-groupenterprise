@@ -24,9 +24,25 @@ export function SloganScroll() {
   });
 
   return (
-    <section ref={ref} aria-label="Nuestro lema" className="relative bg-coal" style={{ height: `${slogan.length * 85}svh` }}>
+    <section ref={ref} aria-label="Nuestro lema" className="relative h-[300svh] bg-coal lg:h-[340svh]">
       <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden">
-        <div className="mx-auto grid w-full max-w-[1400px] items-center gap-10 px-6 md:px-10 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+        {/* Phones/tablets: the active photo becomes a soft backdrop (the framed panel is desktop-only). */}
+        <div aria-hidden className="absolute inset-0 lg:hidden">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, scale: 1.08 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0"
+            >
+              <Image src={images[active]} alt="" fill sizes="100vw" className="img-grade object-cover opacity-30" />
+            </motion.div>
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-b from-coal via-coal/60 to-coal" />
+        </div>
+        <div className="relative mx-auto grid w-full max-w-[1400px] items-center gap-10 px-6 md:px-10 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
           <div>
             <p className="mb-8 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.3em] text-gold">
               <span className="h-px w-8 bg-gold" aria-hidden /> Nuestro lema

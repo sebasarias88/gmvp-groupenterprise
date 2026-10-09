@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { chartsTablet } from "@/assets/images";
-import { investor, faqs } from "@/content/site";
+import { investor, faqs, site } from "@/content/site";
 import { PageHero } from "@/components/sections/PageHero";
 import { SectionLabel } from "@/components/sections/SectionLabel";
 import { SplitHeading } from "@/components/core/SplitHeading";
@@ -31,6 +31,22 @@ export default function InvestPage() {
         intro={investor.profile}
       />
 
+      <section className="mx-auto grid max-w-[1400px] gap-10 px-6 pb-28 md:px-10 md:pb-36 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+        <div>
+          <SectionLabel>Qué buscamos</SectionLabel>
+          <SplitHeading
+            lines={["Socios para", { text: "crecer juntos.", className: "italic text-gold" }]}
+            className="font-serif text-5xl leading-[0.95] text-champagne md:text-6xl"
+          />
+        </div>
+        <Reveal className="lg:pt-14">
+          <p className="text-lg leading-relaxed text-sand md:text-xl">{investor.seeking}</p>
+          <a href={site.phoneHref} className="mt-8 inline-flex items-center gap-3 rounded-full border border-gold/40 px-6 py-3 font-semibold text-gold transition-colors hover:bg-gold hover:text-onyx">
+            Llámanos: {site.phone}
+          </a>
+        </Reveal>
+      </section>
+
       <section className="mx-auto max-w-[1400px] px-6 pb-28 md:px-10 md:pb-40">
         <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
@@ -54,7 +70,7 @@ export default function InvestPage() {
           <div>
             <SectionLabel>Accionistas</SectionLabel>
             <Reveal>
-              <p className="font-serif text-3xl leading-[1.15] text-champagne md:text-5xl">{investor.shareholders}</p>
+              <p className="font-serif text-2xl leading-[1.2] sm:text-3xl text-champagne md:text-5xl">{investor.shareholders}</p>
             </Reveal>
           </div>
           <div>

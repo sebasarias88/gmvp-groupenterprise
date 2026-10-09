@@ -14,9 +14,9 @@
   --color-stone: #8f8672;
   --color-ruby: #c8102e;
 
-  --font-serif: "Instrument Serif", "Times New Roman", serif;
-  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-serif: var(--font-instrument-serif), "Times New Roman", serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -248,3 +248,14 @@ html[data-intro="done"] .intro-fade {
 
 /* Grid children may shrink below their content width (prevents horizontal overflow on phones). */
 .grid > * { min-width: 0; }
+
+/* Returning visitors / phones: the pre-paint script sets data-skip-intro, so the
+   server-rendered preloader never covers the page while JS hydrates. */
+html[data-skip-intro] .preloader-root { display: none; }
+
+/* Inner-page hero photo: slides open on desktop only (CSS, so phones paint it instantly). */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .hero-clip { clip-path: inset(0 0 0 100%); }
+  html[data-intro="done"] .hero-clip { animation: hero-clip 1.6s cubic-bezier(0.76, 0, 0.24, 1) 0.25s forwards; }
+}
+@keyframes hero-clip { to { clip-path: inset(0 0 0 0); } }

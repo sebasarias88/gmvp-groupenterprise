@@ -21,18 +21,13 @@ export function PageHero({ label, lines, intro, image }: { label: string; lines:
   return (
     <section ref={ref} className="relative overflow-hidden pb-20 pt-40 md:pb-28 md:pt-48">
       {image && (
-        <motion.div
-          initial={{ clipPath: "inset(0% 0% 0% 100%)" }}
-          animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-          transition={{ duration: 1.6, delay: 0.25, ease: [0.76, 0, 0.24, 1] }}
-          className="absolute inset-y-0 right-0 w-full lg:w-[52%]"
-        >
+        <div className="hero-clip absolute inset-y-0 right-0 w-full lg:w-[52%]">
           <motion.div style={{ y: imgY }} className="absolute inset-[-10%_0]">
             <Image src={image} alt="" fill preload placeholder="blur" sizes="(min-width:1024px) 52vw, 100vw" className="img-grade object-cover" />
           </motion.div>
           <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-onyx via-onyx/70 to-onyx/10 lg:via-onyx/40" />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-onyx to-transparent" />
-        </motion.div>
+        </div>
       )}
       {!image && <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_0%,rgba(212,175,55,0.12),transparent_50%)]" />}
 

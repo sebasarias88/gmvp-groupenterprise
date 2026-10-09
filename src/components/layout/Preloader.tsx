@@ -50,7 +50,7 @@ export function Preloader() {
           key="preloader"
           exit={{ y: "-100%" }}
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[200] flex flex-col justify-between bg-onyx p-6 max-md:hidden md:p-10"
+          className="preloader-root fixed inset-0 z-[200] flex flex-col justify-between bg-onyx p-6 max-md:hidden md:p-10"
           aria-hidden
         >
           <div className="flex justify-between font-mono text-xs uppercase tracking-[0.3em] text-stone">

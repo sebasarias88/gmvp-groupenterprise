@@ -144,6 +144,8 @@ export const investor = {
     "GMVP Group Enterprise S.A.S. es una sociedad por acciones simplificada administrada bajo la filosofía de un fondo de inversión. Gestiona activamente un portafolio de compañías en Colombia y es un vehículo clave para cualquier inversionista que desee ser dueño de una participación en nuestro grupo empresarial.",
   shareholders:
     "Nuestros accionistas son personas naturales y jurídicas que buscan una rentabilidad sostenible de su inversión y no priorizan maximizar beneficios a corto plazo. Invertimos en la capacitación de nuestro personal para crear un ambiente de trabajo agradable y eficiente, y así brindar las mejores alternativas de inversión.",
+  seeking:
+    "Buscamos personas naturales o jurídicas que deseen pertenecer a esta iniciativa emprendedora y empresarial, apoyándonos con la compra de acciones preferentes de nuestra compañía. Así harás parte de un grupo empresarial con visión de futuro y propuestas de calidad, que busca resultados satisfactorios para el grupo y para sus accionistas. Las acciones pueden pagarse de contado o por cuotas, según la cantidad adquirida.",
   criteria: [
     "Rentabilidad",
     "Operatividad",

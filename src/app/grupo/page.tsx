@@ -28,7 +28,7 @@ export default function GroupPage() {
           ].map((b) => (
             <RevealItem key={b.k} className="rounded-[28px] border border-line bg-coal p-8 md:p-12">
               <span className="font-mono text-xs uppercase tracking-[0.3em] text-gold">{b.k}</span>
-              <p className="mt-10 font-serif text-3xl leading-[1.15] text-champagne md:text-4xl">{b.v}</p>
+              <p className="mt-10 font-serif text-2xl leading-[1.2] sm:text-3xl text-champagne md:text-4xl">{b.v}</p>
             </RevealItem>
           ))}
         </RevealGroup>
@@ -37,7 +37,7 @@ export default function GroupPage() {
       <section className="mx-auto max-w-[1400px] px-6 pb-28 md:px-10 md:pb-40">
         <ParallaxImage src={officeMeeting} alt="Equipo de GMVP en sala de reuniones" className="frame-corners h-[60svh] min-h-[420px] rounded-[32px]" imageClassName="img-grade">
           <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-onyx/90 via-transparent to-transparent" />
-          <p className="absolute bottom-8 left-8 right-8 max-w-2xl font-serif text-3xl leading-tight text-champagne md:bottom-12 md:left-12 md:text-5xl">
+          <p className="absolute bottom-8 left-8 right-8 max-w-2xl font-serif text-2xl leading-tight sm:text-3xl text-champagne md:bottom-12 md:left-12 md:text-5xl">
             Un portafolio dinámico, administrado con <em className="text-gold">gobierno corporativo.</em>
           </p>
         </ParallaxImage>
